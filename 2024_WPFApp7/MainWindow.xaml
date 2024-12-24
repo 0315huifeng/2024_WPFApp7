@@ -1,0 +1,39 @@
+﻿<Window x:Class="_2024_WPFApp7.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:_2024_WPFApp7"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="80"/>
+            <RowDefinition Height="500*"/>
+            <RowDefinition Height="30"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="300*"/>
+            <ColumnDefinition Width="5"/>
+            <ColumnDefinition Width="500*"/>
+        </Grid.ColumnDefinitions>
+        <StackPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Orientation="Vertical"
+                    Height="80" Width="Auto" Background="#FFFAECEC">
+            <Label Content="每小時提供各監測站之空氣品質指標(AQI)" Margin="30,0,0,0"/>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                <TextBox x:Name="UrlTextBox" Width="1000" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="35" Margin="30,0,0,0"/>
+                <Button x:Name="GetAQIButton" Content="取得AQI" Width="100" Height="35" Margin="20,0,0,0" Click="GetAQIButton_Click" />
+            </StackPanel>
+        </StackPanel>
+        <TextBox x:Name="ContentTextBox" Grid.Row="1" Grid.Column="0" Background="#FFFDFBED"/>
+        <GridSplitter Grid.Row="1" Grid.Column="1" Width="5" Background="#FFD9D9D9" HorizontalAlignment="Center"/>
+        <Grid Grid.Row="1" Grid.Column="2" Background="#FFE7F1FC" >
+        
+        </Grid>
+        <StatusBar Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3">
+            <StatusBarItem >
+                <TextBlock x:Name="statusTextBlock" Text="Ready" Margin="100,0,0,0" />
+            </StatusBarItem>
+        </StatusBar>
+    </Grid>
+</Window>
