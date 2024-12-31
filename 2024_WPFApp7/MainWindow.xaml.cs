@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using System.Net.Http;
+using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -26,6 +27,28 @@ namespace _2024_WPFApp7
         private async void GetAQIButton_Click(object sender, RoutedEventArgs e)
         {
             ContentTextBox.Text = "抓取資料中...";
+            string data = await FetchContentAsync(defaultURL);
+            ContentTextBox.Text = data;
+        }
+
+        private async Task<string> FetchContentAsync(string url)
+        {
+            using (var client = new HttpClient())
+            {
+                client.Timeout = TimeSpan.FromSeconds(100);
+                try
+                {
+                    HttpResponseMessage response = await client.GetAsync(url);
+                    response.EnsureSuccessStatusCode();
+                    string responseBody = await response.Content.ReadAsStringAsync();
+                    return responseBody;
+                }
+                catch (HttpRequestException e)
+                {
+                    MessageBox.Show($"Request exception: {e.Message}");
+                    return null;
+                }
+            }
         }
     }
 }
